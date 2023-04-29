@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost/powerup
-    username: root
-    password: 1234
+    url: jdbc:mysql://xd-mau5.xyz/admin_powerup
+    username: admin_powerup
+    password: Powerup1234
   jpa:
     hibernate:
       ddl-auto: update
