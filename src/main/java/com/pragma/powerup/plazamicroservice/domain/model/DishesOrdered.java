@@ -2,12 +2,12 @@ package com.pragma.powerup.plazamicroservice.domain.model;
 
 import java.math.BigInteger;
 
-public class dishesOrdered {
+public class DishesOrdered {
     private BigInteger idOrder;
     private BigInteger idDish;
     private int quantity;
 
-    public dishesOrdered(BigInteger idOrder, BigInteger idDish, int quantity) {
+    public DishesOrdered(BigInteger idOrder, BigInteger idDish, int quantity) {
         this.idOrder = idOrder;
         this.idDish = idDish;
         this.quantity = quantity;
