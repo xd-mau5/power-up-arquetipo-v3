@@ -12,5 +12,4 @@ public interface IUserHandler {
     PersonResponseDto getProvider(Long id);
     PersonResponseDto getEmployee(Long id);
     PersonResponseDto getClient(Long id);
-
 }

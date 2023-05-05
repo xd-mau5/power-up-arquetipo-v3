@@ -11,7 +11,7 @@ public class Dishes {
     private float price;
     private BigInteger restaurantId;
     private String imageUrl;
-    private String Active;
+    private String active;
 
     public Dishes(BigInteger id, String name, BigInteger categoryId, String description, float price, BigInteger restaurantId, String imageUrl, String active) {
         this.id = id;
@@ -21,7 +21,7 @@ public class Dishes {
         this.price = price;
         this.restaurantId = restaurantId;
         this.imageUrl = imageUrl;
-        Active = active;
+        this.active = active;
     }
 
     public BigInteger getId() {
@@ -81,10 +81,10 @@ public class Dishes {
     }
 
     public String getActive() {
-        return Active;
+        return active;
     }
 
     public void setActive(String active) {
-        Active = active;
+        this.active = active;
     }
 }

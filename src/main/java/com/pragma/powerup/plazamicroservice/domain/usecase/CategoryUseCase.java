@@ -14,6 +14,6 @@ public class CategoryUseCase implements ICategoryServicePort {
     @Override
     public void createCategory(Category category) {
         categoryPersistencePort.createCategory(category);
-    }
 
+    }
 }
