@@ -15,4 +15,5 @@ public class PersonRequestDto {
     private String dniNumber;
     private String idPersonType;
     private String password;
+    private String birthDate;
 }

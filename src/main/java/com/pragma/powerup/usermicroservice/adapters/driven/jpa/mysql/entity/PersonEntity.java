@@ -23,7 +23,9 @@ public class PersonEntity {
     private Long id;
     private String name;
     private String surname;
+    private String birthDate;
     private String mail;
+    @Column(unique = true, nullable = false, length = 13)
     private String phone;
     private String address;
     private String idDniType;

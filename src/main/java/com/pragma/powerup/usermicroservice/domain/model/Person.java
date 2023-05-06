@@ -11,8 +11,9 @@ public class Person {
     private String dniNumber;
     private String idPersonType;
     private String password;
+    private String birthDate;
 
-    public Person(Long id, String name, String surname, String mail, String phone, String address, String idDniType, String dniNumber, String idPersonType, String password) {
+    public Person(Long id, String name, String surname, String mail, String phone, String address, String idDniType, String dniNumber, String idPersonType, String password, String birthDate) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -23,6 +24,7 @@ public class Person {
         this.dniNumber = dniNumber;
         this.idPersonType = idPersonType;
         this.password = password;
+        this.birthDate = birthDate;
     }
 
     public Long getId() {
@@ -103,5 +105,13 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 }

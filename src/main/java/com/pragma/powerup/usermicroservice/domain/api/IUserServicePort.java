@@ -7,6 +7,7 @@ import java.util.List;
 public interface IUserServicePort {
     void saveUser(User user);
     void deleteUser(User user);
+    void saveOwner(User user);
     List<User> getAllProviders(int page);
     User getProvider(Long id);
     User getEmployee(Long id);

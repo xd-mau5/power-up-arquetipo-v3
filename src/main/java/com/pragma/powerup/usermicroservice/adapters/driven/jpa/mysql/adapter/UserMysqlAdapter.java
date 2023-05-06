@@ -1,11 +1,6 @@
 package com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.adapter;
 
-import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.NoDataFoundException;
-import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.PersonNotFoundException;
-import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.RoleNotAllowedForCreationException;
-import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.RoleNotFoundException;
-import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.UserAlreadyExistsException;
-import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.UserNotFoundException;
+import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.exceptions.*;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IPersonRepository;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IRoleRepository;
 import com.pragma.powerup.usermicroservice.adapters.driven.jpa.mysql.repositories.IUserRepository;
@@ -18,6 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static com.pragma.powerup.usermicroservice.configuration.Constants.CLIENT_ROLE_ID;
@@ -40,6 +38,28 @@ public class UserMysqlAdapter implements IUserPersistencePort {
         }
         if (userRepository.findByPersonEntityIdAndRoleEntityId(user.getPerson().getId(), user.getRole().getId()).isPresent()) {
             throw new UserAlreadyExistsException();
+        }
+        personRepository.findById(user.getPerson().getId()).orElseThrow(PersonNotFoundException::new);
+        roleRepository.findById(user.getRole().getId()).orElseThrow(RoleNotFoundException::new);
+        userRepository.save(userEntityMapper.toEntity(user));
+    }
+    @Override
+    public void saveOwner(User user) {
+        if (user.getRole().getId().equals(PROVIDER_ROLE_ID))
+        {
+            throw new RoleNotAllowedForCreationException();
+        }
+        if (userRepository.findByPersonEntityIdAndRoleEntityId(user.getPerson().getId(), user.getRole().getId()).isPresent()) {
+            throw new UserAlreadyExistsException();
+        }
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate birthDate = LocalDate.parse(personRepository.findById(user.getPerson().getId()).get().getBirthDate(), formatter);
+        Period period = Period.between(birthDate, currentDate);
+        int age = period.getYears();
+        System.out.println(age);
+        if (age < 18) {
+            throw new OwnerIsNotOver18();
         }
         personRepository.findById(user.getPerson().getId()).orElseThrow(PersonNotFoundException::new);
         roleRepository.findById(user.getRole().getId()).orElseThrow(RoleNotFoundException::new);
