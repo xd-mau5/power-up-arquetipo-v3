@@ -3,7 +3,7 @@ package com.pragma.powerup.plazamicroservice.domain.model;
 import java.math.BigInteger;
 import java.util.Date;
 
-public class Order {
+public class Orders {
     private BigInteger id;
     private Long userId;
     private Date date;
@@ -11,7 +11,7 @@ public class Order {
     private BigInteger chefId;
     private BigInteger restaurantId;
 
-    public Order(BigInteger id, Long userId, Date date, String status, BigInteger chefId, BigInteger restaurantId) {
+    public Orders(BigInteger id, Long userId, Date date, String status, BigInteger chefId, BigInteger restaurantId) {
         this.id = id;
         this.userId = userId;
         this.date = date;

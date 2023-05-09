@@ -1,7 +1,7 @@
 package com.pragma.powerup.plazamicroservice.domain.api;
 
-import com.pragma.powerup.plazamicroservice.domain.model.Order;
+import com.pragma.powerup.plazamicroservice.domain.model.Orders;
 
 public interface IOrderServicePort {
-    void createOrder(Order order);
+    void createOrder(Orders orders);
 }
